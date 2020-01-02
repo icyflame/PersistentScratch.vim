@@ -29,4 +29,4 @@ to find the list of available arguments.
 
 Code inside this repo is licensed under the MIT License.
 
-Copyright (c) 2019 [Siddharth Kannan](https://icyflame.github.io)
+Copyright (c) 2020 [Siddharth Kannan](https://icyflame.github.io)
