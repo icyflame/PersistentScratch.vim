@@ -32,8 +32,14 @@ endfunction
 function! s:persistent_scratch_write(args)
     let l:file_name = s:get_file_name(a:args)
     echo l:file_name
-    call s:save_current_buffer()
-    call s:save_persistent_scratch(l:file_name)
+
+    try
+        call s:save_current_buffer()
+    catch
+    finally
+        call s:save_persistent_scratch(l:file_name)
+    endtry
+
     return l:file_name
 endfunction
 
