@@ -1,5 +1,4 @@
 " Configuration options
-
 if !exists('g:persistent_scratch_file_location')
     let g:persistent_scratch_file_location = "/tmp/scratch"
 endif

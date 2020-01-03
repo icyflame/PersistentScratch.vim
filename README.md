@@ -1,6 +1,6 @@
 # PersistentScratch.vim
 
-> Scratch files in persistent storage
+> Store your scratch files in persistent storage
 
 ## Why?
 
@@ -12,7 +12,9 @@ and named them appropriately.
 
 This worked fine as long as I didn't have to open the file back up or create the
 file from inside vim itself. This Vim plugin saves the current buffer into a
-persistent scratch file at a location that can be configured.
+persistent scratch file at a location that can be configured. It tries to
+minimize the steps between wanting to store a file and storing a file in
+persistent storage. Everything is pre-configured or optional.
 
 ## Commands
 
@@ -24,6 +26,8 @@ persistent scratch file at a location that can be configured.
 Examples:
 
 ```sh
+:SCW
+:SCW test json
 ```
 
 ### `:SCE [stub] [ext]`
@@ -72,6 +76,13 @@ let g:persistent_scratch_file_ts_format = "%Y-%m-%d-%H-%M-%S"
 " Default file extension for a new Scratch file
 let g:persistent_scratch_default_file_ext = "md"
 ```
+
+**File name construction:** `<scratch_file_location>/<strftime(...)>[-<stub>].<ext>`
+
+## TODO
+
+- [ ] Add documentation in the `doc/` folder
+- [ ] Improve examples for read to show usage of regular expressions
 
 ## License
 
