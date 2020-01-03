@@ -16,6 +16,26 @@ persistent scratch file at a location that can be configured. It tries to
 minimize the steps between wanting to store a file and storing a file in
 persistent storage. Everything is pre-configured or optional.
 
+## Installation
+
+### Vundle
+
+```vim
+call vundle#begin()
+" ...
+Plugin 'icyflame/PersistentScratch.vim'
+" ...
+call vundle#end()
+```
+
+### Manual
+
+```sh
+mkdir -p ~/.vim/plugin
+git clone git@github.com:icyflame/PersistentScratch.vim.git ~/.vim/plugin/PersistentScratch.vim
+```
+
+
 ## Commands
 
 ### `:SCW [stub] [extension]`
