@@ -30,6 +30,10 @@ Examples:
 :SCW test json
 ```
 
+This command can be called from normal or visual mode. In normal mode, the
+complete buffer will be written to the scratch file. In visual mode, the
+highlighted portion will be writed to the scratch file.
+
 ### `:SCE [stub] [ext]`
 
 > Write the current buffer to a scratch file and then open that file for editing
@@ -42,6 +46,10 @@ Examples:
 :SCE test json
 :SCE test rb
 ```
+
+This command can be called from normal or visual mode. In normal mode, the
+complete buffer will be written to the scratch file. In visual mode, the
+highlighted portion will be writed to the scratch file.
 
 ### `:SCR stub`
 

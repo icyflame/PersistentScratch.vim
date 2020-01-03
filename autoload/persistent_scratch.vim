@@ -23,12 +23,12 @@ function! s:save_current_buffer()
     return
 endfunction
 
-function! s:save_persistent_scratch(file_name)
-    silent exe "write! " . a:file_name
+function! s:save_persistent_scratch(start, end, file_name)
+    silent exe "" . a:start . "," . a:end . "write! " . a:file_name
     return
 endfunction
 
-function! s:persistent_scratch_write(args)
+function! s:persistent_scratch_write(start, end, args)
     let l:file_name = s:get_file_name(a:args)
     echo l:file_name
 
@@ -36,20 +36,20 @@ function! s:persistent_scratch_write(args)
         call s:save_current_buffer()
     catch
     finally
-        call s:save_persistent_scratch(l:file_name)
+        call s:save_persistent_scratch(a:start, a:end, l:file_name)
     endtry
 
     return l:file_name
 endfunction
 
 " Plugin functions
-function! persistent_scratch#write(...)
-    let l:file_name = s:persistent_scratch_write(a:000)
+function! persistent_scratch#write(start, end, ...) range
+    let l:file_name = s:persistent_scratch_write(a:start, a:end, a:000)
     echohl "Saved to persistent scratch file " . l:file_name
 endfunction
 
-function! persistent_scratch#edit(...)
-    let l:file_name = s:persistent_scratch_write(a:000)
+function! persistent_scratch#edit(start, end, ...) range
+    let l:file_name = s:persistent_scratch_write(a:start, a:end, a:000)
     let cursor = getcurpos()
     let lnum = cursor[1]
     execute "edit " . "+" . lnum . " " . l:file_name
@@ -67,9 +67,3 @@ function persistent_scratch#read(file_name_pat)
     let l:matched_file = l:file_list[l:matched]
     execute "edit " . printf("%s/%s", g:persistent_scratch_file_location, l:matched_file)
 endfunction
-
-" TODO(icyflame): Include the range keyword here function name(...) range {...}
-" so that the highlighted range is then copied into the new scratch file.
-"
-" This function can be used to get the selection from the current buffer and
-" pasting it into the new buffer: https://git.io/Jex4M
