@@ -14,7 +14,9 @@ function! s:get_file_name(arguments)
     let l:file_stub = len(a:arguments) >= 1 ? printf("-%s", a:arguments[0]) : ""
     let l:file_ext = len(a:arguments) >= 2 ? a:arguments[1] : g:persistent_scratch_default_file_ext
     let l:file_ts = strftime(g:persistent_scratch_file_ts_format)
-    call mkdir(g:persistent_scratch_file_location, 'p')
+    " TODO(icyflame): Make directory not in `pwd` but at home. This didn't work
+    " properly if the location starts with ~ or with $HOME
+    " call mkdir(g:persistent_scratch_file_location, 'p')
     return printf("%s/%s%s.%s", g:persistent_scratch_file_location, l:file_ts, l:file_stub, l:file_ext)
 endfunction
 
